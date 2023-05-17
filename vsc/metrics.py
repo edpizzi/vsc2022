@@ -72,6 +72,10 @@ class CandidatePair:
     @classmethod
     def read_csv(cls, file: Union[str, TextIO]) -> List["CandidatePair"]:
         df = pd.read_csv(file)
+        return cls.from_df(df)
+
+    @classmethod
+    def from_df(cls, df) -> List["CandidatePair"]:
         pairs = []
         for _, row in df.iterrows():
             query_id = format_video_id(row.query_id, Dataset.QUERIES)
